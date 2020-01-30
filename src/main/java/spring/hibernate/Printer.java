@@ -3,9 +3,12 @@ package spring.hibernate;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "Printer")
+@Table(name = "Printer",uniqueConstraints = {
+        @UniqueConstraint(columnNames = "ID")})
 @ToString
 @RequiredArgsConstructor
 public class Printer implements HibernateEntity {
@@ -27,11 +30,25 @@ public class Printer implements HibernateEntity {
     private String producer;
 
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "EMPLOYEE_ID", nullable = false, referencedColumnName = "ID")
-    @Getter @Setter
-    @NonNull
-    public Employees employees;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "EMPLOYEES", joinColumns={@JoinColumn(referencedColumnName = "ID")}, inverseJoinColumns={@JoinColumn(referencedColumnName="ID")})
+//    @Getter @Setter
+//    @NonNull
+//    public Employees employees;
+
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "EMPLOYEE_ID", nullable = false, referencedColumnName = "ID")
+//    @Getter @Setter
+//    @NonNull
+//    public Employees employees;
+
+//    @ManyToMany(mappedBy="printers")
+//    @Getter @Setter
+//    private Set<Employees> employees = new HashSet<>();
+//
+
 
     public Printer(){}
 

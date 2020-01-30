@@ -25,8 +25,8 @@ public class HibernateConfig {
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.SQLServerDialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-                //TODO
-                settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+                //TODO - było create-drop
+                settings.put(Environment.HBM2DDL_AUTO, "update");
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(Employees.class);
                 configuration.addAnnotatedClass(Phones.class);

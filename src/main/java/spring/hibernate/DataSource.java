@@ -44,18 +44,21 @@ public class DataSource {
         Set<Cars> carsSet = new HashSet<>();
         carsSet.add(cars);
 
+        Set<Employees> employeesSet = new HashSet<>();
+        employeesSet.add(employees);
+
         employees.setCars(carsSet);
+//
+//        Printer printer = new Printer();
+//        printer.setEmployees(employeesSet);
+//        printer.setProducer("HP");
+//        printer.setModel("100");
+//
+//
+//        Set<Printer> printerSet = new HashSet<>();
+//        printerSet.add(printer);
 
-        Printer printer = new Printer();
-        printer.setEmployees(employees);
-        printer.setProducer("HP");
-        printer.setModel("100");
-        printer.setEmployees(employees);
-
-        Set<Printer> printerSet = new HashSet<>();
-        printerSet.add(printer);
-
-        employees.setPrinters(printerSet);
+//        employees.setPrinters(printerSet);
 
         hibernateDao.update(employees);
     }
