@@ -87,11 +87,11 @@ public class Employees implements HibernateEntity {
 //    @EqualsAndHashCode.Exclude
 //    private Set<Printer> printers;
 
-//    @ManyToMany(cascade=CascadeType.ALL)
-//    @JoinTable(name="Employees_Printer", joinColumns={@JoinColumn(referencedColumnName="ID")}
-//            , inverseJoinColumns={@JoinColumn(referencedColumnName="ID")})
-//    @Getter@Setter
-//    private Set<Printer> printers = new HashSet<>();
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name="Employees_Printer", joinColumns={@JoinColumn(referencedColumnName="ID")}
+            , inverseJoinColumns={@JoinColumn(referencedColumnName="ID")})
+    @Getter@Setter
+    private Set<Printer> printers = new HashSet<>();
 
 
 

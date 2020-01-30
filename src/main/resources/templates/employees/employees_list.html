@@ -46,10 +46,6 @@
             <td th:text="${emp.city}"></td>
             <td th:text="${emp.email}"></td>
             <td th:text="${emp.benefit}"></td>
-            <!--//TODO
-            naprawić
-              <td th:text="${emp.startJobDate}>"</td>
-            -->
             <td th:text="${#dates.format(emp.startJobDate, 'dd-MM-yyyy')}"></td>
             <td class="action-td">
                 <form method="post" class="padding5px" th:action="#" th:action="@{/delete}">

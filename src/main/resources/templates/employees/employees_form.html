@@ -21,6 +21,13 @@
             <input type="text" class="form-control" th:field="*{email}" placeholder="Email"><br>
             <input type="text" class="form-control" th:field="*{benefit}" placeholder="Benefit"><br>
             <input type="text" class="form-control" th:field="*{startJobDate}" placeholder="Start Job Date"><br>
+            <select class="form-control" th:field="*{printer.model}" >
+                <option value="default">Select printer</option>
+                <option th:each="printer : ${printerList}"
+                        th:value="${printer.getModel()}"
+                        th:text="${printer.getProducer()}">
+                </option>
+            </select>
             <input type="submit" th:value="Save" class="btn btn-danger">
         </form>
         <hr>

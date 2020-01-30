@@ -44,10 +44,10 @@ public class Printer implements HibernateEntity {
 //    @NonNull
 //    public Employees employees;
 
-//    @ManyToMany(mappedBy="printers")
-//    @Getter @Setter
-//    private Set<Employees> employees = new HashSet<>();
-//
+    @ManyToMany(mappedBy="printers")
+    @Getter @Setter
+    private Set<Employees> employees = new HashSet<>();
+
 
 
     public Printer(){}

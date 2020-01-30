@@ -38,6 +38,8 @@ public class EmployeesController {
     public String showForm(Model model) {
         Employees employees = new Employees();
         employees.setStartJobDate(new Date());
+//        Printer printer = new Printer();
+
         model.addAttribute("emp", employees);
         return "employees/employees_form";
     }
