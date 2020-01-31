@@ -48,6 +48,11 @@ public class MainHibernateDao {
 
 
         hibernateDao.save(phones);
+        Set<Employees> employeesSet = new HashSet<>();
+        employeesSet.add(employee);
+
+        Printer printer = new Printer("Lexmark","XP500");
+        printer.setEmployees(employeesSet);
 
     }
 }

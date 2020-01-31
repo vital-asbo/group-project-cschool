@@ -20,7 +20,7 @@ public class EmployeesController {
     public EmployeesController() {
         try {
               hibernateDao = new HibernateDao();
-            DataSource.supplyDatabase();
+//            DataSource.supplyDatabase();
             list = hibernateDao.get(Employees.class);
         } catch (NullPointerException ex) {
             System.out.println("Brak połączenia z bazą danych");
@@ -29,7 +29,7 @@ public class EmployeesController {
         }
     }
 
-    @RequestMapping("/employees")
+    @RequestMapping("/")
     public String indexGet() {
         return "employees/index_employees";
     }
@@ -40,12 +40,12 @@ public class EmployeesController {
         employees.setStartJobDate(new Date());
 //        Printer printer = new Printer();
 
-        model.addAttribute("emp", employees);
+        model.addAttribute("employees", employees);
         return "employees/employees_form";
     }
 
     @RequestMapping(value = "/save")
-    public ModelAndView save(@ModelAttribute(value = "emp") Employees employees) {
+    public ModelAndView save(@ModelAttribute(value = "employees") Employees employees) {
         if (employees.getId() == 0) {
             System.out.println("Adding a new emp");
             employees.setId(list.size() + 1);
@@ -76,6 +76,7 @@ public class EmployeesController {
 
     @RequestMapping("/employees_list")
     public ModelAndView showEmployeesList(Model model) {
+        System.out.println(list.toString());
         return new ModelAndView("employees/employees_list", "list", list);
     }
 

@@ -1,6 +1,8 @@
 package spring.hibernate;
 
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -46,6 +48,7 @@ public class Printer implements HibernateEntity {
 
     @ManyToMany(mappedBy="printers")
     @Getter @Setter
+    @LazyCollection(LazyCollectionOption.TRUE)
     private Set<Employees> employees = new HashSet<>();
 
 

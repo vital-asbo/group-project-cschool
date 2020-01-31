@@ -22,7 +22,6 @@
             <th>Fist Name</th>
             <th>Last Name</th>
             <th>Salary</th>
-
             <th>Address</th>
             <th>Age</th>
             <th>City</th>
@@ -30,30 +29,27 @@
             <th>Benefit</th>
             <th>Start Job Date</th>
             <th>Action</th>
-
-
         </tr>
         </thead>
         <tbody>
-        <tr class="result text-white" data-th-each="emp : ${list}">
-            <td th:text="${emp.id}"></td>
-            <td th:text="${emp.firstName}"></td>
-            <td th:text="${emp.lastName}"></td>
-            <td th:text="${emp.salary}"></td>
-
-            <td th:text="${emp.address}"></td>
-            <td th:text="${emp.age}"></td>
-            <td th:text="${emp.city}"></td>
-            <td th:text="${emp.email}"></td>
-            <td th:text="${emp.benefit}"></td>
-            <td th:text="${#dates.format(emp.startJobDate, 'dd-MM-yyyy')}"></td>
+        <tr class="result text-white" data-th-each="employees : ${list}">
+            <td th:text="${employees.id}"></td>
+            <td th:text="${employees.firstName}"></td>
+            <td th:text="${employees.lastName}"></td>
+            <td th:text="${employees.salary}"></td>
+            <td th:text="${employees.address}"></td>
+            <td th:text="${employees.age}"></td>
+            <td th:text="${employees.city}"></td>
+            <td th:text="${employees.email}"></td>
+            <td th:text="${employees.benefit}"></td>
+<!--            <td th:text="${#dates.format(employees.startJobDate, 'dd-MM-yyyy')}"></td>-->
             <td class="action-td">
                 <form method="post" class="padding5px" th:action="#" th:action="@{/delete}">
-                    <input type="hidden" th:name="emp_id" th:value="${emp.id}">
+                    <input type="hidden" th:name="employees_id" th:value="${employees.id}">
                     <input type="submit" class="btn btn-danger" value="Delete">
                 </form>
                 <form method="post" class="padding5px" action="#" th:action="@{/edit}">
-                    <input type="hidden" th:name="emp_id" th:value="${emp.id}">
+                    <input type="hidden" th:name="employees_id" th:value="${employees.id}">
                     <input type="submit" class="btn btn-warning" value="Edit">
                 </form>
             </td>

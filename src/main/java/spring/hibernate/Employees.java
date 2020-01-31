@@ -1,6 +1,8 @@
 package spring.hibernate;
 
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -90,7 +92,10 @@ public class Employees implements HibernateEntity {
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name="Employees_Printer", joinColumns={@JoinColumn(referencedColumnName="ID")}
             , inverseJoinColumns={@JoinColumn(referencedColumnName="ID")})
+    @ToString.Exclude
+    @LazyCollection(LazyCollectionOption.TRUE)
     @Getter@Setter
+    @EqualsAndHashCode.Exclude
     private Set<Printer> printers = new HashSet<>();
 
 
