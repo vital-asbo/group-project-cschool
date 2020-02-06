@@ -3,35 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <title>Employee Add Form</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" type="text/css">
+    <link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" type="text/css">
+    <link rel="stylesheet" href="../../static/css/main.css" th:href="@{/css/main.css}" type="text/css">
 </head>
 <body>
 <hr>
 <div class="container">
     <h2>Employee Form</h2>
     <div class="form-group">
-        <form action="#" th:action="@{/save}" th:object="${employees}" method="post">
+        <form action="#" class="form-group" th:action="@{/save}" th:object="${employees}" method="post">
             <input type="hidden" th:field="*{id}">
+            <h4>First Name</h4>
             <input type="text" class="form-control" th:field="*{firstName}" placeholder="First Name"><br>
+            <h4>Last Name</h4>
             <input type="text" class="form-control" th:field="*{lastName}" placeholder="Last Name"><br>
-            <input type="text" class="form-control" th:field="*{salary}" placeholder="Salary"><br>
-            <input type="text" class="form-control" th:field="*{address}" placeholder="Adress"><br>
-            <input type="text" class="form-control" th:field="*{age}" placeholder="Age"><br>
+            <h4>Address</h4>
+            <input type="text" class="form-control" th:field="*{address}" placeholder="Address"><br>
+            <h4>City</h4>
             <input type="text" class="form-control" th:field="*{city}" placeholder="City"><br>
-            <input type="text" class="form-control" th:field="*{email}" placeholder="Email"><br>
+            <h4>Salary</h4>
+            <input type="text" class="form-control" th:field="*{salary}" placeholder="Salary"><br>
+            <h4>Age</h4>
+            <input type="text" class="form-control" th:field="*{age}" placeholder="Age"><br>
+            <h4>Start job date - format: DD-MM-YYYY</h4>
+            <input type="text" class="form-control" th:field="*{startJobDate}" placeholder="StartJobDate"><br>
+            <h4>Benefit</h4>
             <input type="text" class="form-control" th:field="*{benefit}" placeholder="Benefit"><br>
-            <input type="text" class="form-control" th:field="*{startJobDate}" placeholder="Start Job Date"><br>
-<!--            <select class="form-control" th:field="*{printer.model}" >-->
-<!--                <option value="default">Select printer</option>-->
-<!--                <option th:each="printer : ${printerList}"-->
-<!--                        th:value="${printer.getModel()}"-->
-<!--                        th:text="${printer.getProducer()}">-->
-<!--                </option>-->
-<!--            </select>-->
-            <input type="submit" th:value="Save" class="btn btn-danger">
+            <h4>Email</h4>
+            <input type="text" class="form-control" th:field="*{email}" placeholder="Email"><br>
+<!--            <td><select class="form-control" th:field="*{printersList}" >-->
+<!--                <option value="default">Printers</option>-->
+<!--            <option th:each="printer : ${printersList}"-->
+<!--                    th:value="${printer.id}"-->
+<!--                    th:text="${printer.id}">-->
+<!--            </option>-->
+<!--            </select></td>-->
+<!--            <input type="text"  th:field="*{printer}" placeholder="printer"><br>-->
+            <input type="submit" class="btn btn-danger">
         </form>
         <hr>
     </div>
 </div>
+
 </body>
 </html>
+<!--<!DOCTYPE html>-->
+<!--<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Employee Add Form</title>-->
+<!--    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" type="text/css">-->
+<!--</head>-->
+<!--<body>-->
+<!--<hr>-->
+<!--<div class="container">-->
+<!--    <h2>Employee Form</h2>-->
+<!--    <div class="form-group">-->
+<!--        <form action="#" th:action="@{/save}" th:object="${employees}" method="post">-->
+<!--            <input type="hidden" th:field="*{id}">-->
+<!--            <input type="text" class="form-control" th:field="*{firstName}" placeholder="First Name"><br>-->
+<!--            <input type="text" class="form-control" th:field="*{lastName}" placeholder="Last Name"><br>-->
+<!--            <input type="text" class="form-control" th:field="*{salary}" placeholder="Salary"><br>-->
+<!--            <input type="text" class="form-control" th:field="*{address}" placeholder="Adress"><br>-->
+<!--            <input type="text" class="form-control" th:field="*{age}" placeholder="Age"><br>-->
+<!--            <input type="text" class="form-control" th:field="*{city}" placeholder="City"><br>-->
+<!--            <input type="text" class="form-control" th:field="*{email}" placeholder="Email"><br>-->
+<!--            <input type="text" class="form-control" th:field="*{benefit}" placeholder="Benefit"><br>-->
+<!--&lt;!&ndash;            <input type="text" class="form-control" th:field="*{startJobDate}" placeholder="Start Job Date"><br>&ndash;&gt;-->
+<!--&lt;!&ndash;            <select class="form-control" th:field="*{printer.model}" >&ndash;&gt;-->
+<!--&lt;!&ndash;                <option value="default">Select printer</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                <option th:each="printer : ${printerList}"&ndash;&gt;-->
+<!--&lt;!&ndash;                        th:value="${printer.getModel()}"&ndash;&gt;-->
+<!--&lt;!&ndash;                        th:text="${printer.getProducer()}">&ndash;&gt;-->
+<!--&lt;!&ndash;                </option>&ndash;&gt;-->
+<!--&lt;!&ndash;            </select>&ndash;&gt;-->
+<!--            <input type="submit" th:value="Save" class="btn btn-danger">-->
+<!--        </form>-->
+<!--        <hr>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
