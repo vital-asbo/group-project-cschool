@@ -51,8 +51,9 @@ public class MainHibernateDao {
         Set<Employees> employeesSet = new HashSet<>();
         employeesSet.add(employee);
 
-        Printer printer = new Printer("Lexmark","XP500");
+        Printer printer = new Printer();
+        printer.setModel("Lexmark");
+        printer.setProducer("XP500");
         printer.setEmployees(employeesSet);
-
     }
 }

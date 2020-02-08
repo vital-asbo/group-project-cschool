@@ -11,6 +11,8 @@ import java.util.Set;
 @Entity
 @Table(name = "Printer",uniqueConstraints = {
         @UniqueConstraint(columnNames = "ID")})
+//@Table(name = "Printer",uniqueConstraints = {
+//        @UniqueConstraint(columnNames = "ID")})
 @ToString
 @RequiredArgsConstructor
 public class Printer implements HibernateEntity {
@@ -48,8 +50,22 @@ public class Printer implements HibernateEntity {
 
     @ManyToMany(mappedBy="printers")
     @Getter @Setter
+    @NonNull
     @LazyCollection(LazyCollectionOption.TRUE)
-    private Set<Employees> employees = new HashSet<>();
+    private Set<Employees> employees;
+
+
+    public Set<Employees> getEmployees(){
+        if (employees == null){
+            employees=  new HashSet<>();      }
+        return employees;
+    }
+
+    public void setEmployees(Set<Employees> employees)
+    {
+        this.employees= employees;
+    }
+
 
 
 

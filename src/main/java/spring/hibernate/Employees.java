@@ -96,7 +96,20 @@ public class Employees implements HibernateEntity {
     @LazyCollection(LazyCollectionOption.TRUE)
     @Getter@Setter
     @EqualsAndHashCode.Exclude
-    private Set<Printer> printers = new HashSet<>();
+    private Set<Printer> printers;
+
+
+
+    public Set<Printer> getPrinters(){
+        if (printers == null){
+            printers = new HashSet<>();
+        }
+        return printers;
+    }
+
+    public void setPrinters(Set<Printer> printers){
+        this.printers = printers;
+    }
 
 
 

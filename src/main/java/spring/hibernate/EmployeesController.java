@@ -16,12 +16,14 @@ public class EmployeesController {
 
     private List<Employees> list;
     private HibernateDao hibernateDao;
+    private List<Printer> printersList;
 
     public EmployeesController() {
         try {
               hibernateDao = new HibernateDao();
 //            DataSource.supplyDatabase();
             list = hibernateDao.get(Employees.class);
+            printersList = hibernateDao.get(Printer.class);
         } catch (NullPointerException ex) {
             System.out.println("Brak połączenia z bazą danych");
             ex.getMessage();
@@ -41,6 +43,7 @@ public class EmployeesController {
 //        Printer printer = new Printer();
 
         model.addAttribute("employees", employees);
+
         return "employees/employees_form";
     }
 
@@ -60,7 +63,7 @@ public class EmployeesController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public ModelAndView delete(@RequestParam(value = "emp_id") String emp_id) {
+    public ModelAndView delete(@RequestParam(value = "employees_id") String emp_id) {
         Employees employeesTemp = getEmployeesById(Integer.parseInt(emp_id));
         list.remove(employeesTemp);
         deleteEmployeeInDB(employeesTemp);
@@ -68,16 +71,22 @@ public class EmployeesController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ModelAndView edit(@RequestParam(value = "emp_id") String emp_id) {
+    public ModelAndView edit(@RequestParam(value = "employees_id") String emp_id) {
         Employees employeesTemp = getEmployeesById(Integer.parseInt(emp_id));
         updateEmployeeInDB(employeesTemp);
-        return new ModelAndView("employees/employees_form", "emp", employeesTemp);
+        return new ModelAndView("employees/employees_form", "employees", employeesTemp);
     }
 
     @RequestMapping("/employees_list")
     public ModelAndView showEmployeesList(Model model) {
         System.out.println(list.toString());
         return new ModelAndView("employees/employees_list", "list", list);
+    }
+
+    @RequestMapping("/printers_list")
+    public ModelAndView showPrintersList(Model model) {
+        System.out.println(list.toString());
+        return new ModelAndView("employees/printers_list", "list", printersList);
     }
 
     private Employees getEmployeesById(@RequestParam int id) {
