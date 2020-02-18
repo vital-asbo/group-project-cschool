@@ -5,15 +5,17 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-@Entity
-@Table(name = "Printer",uniqueConstraints = {
-        @UniqueConstraint(columnNames = "ID")})
+@Entity(name="Printer")
+@Table(name = "printer")
 //@Table(name = "Printer",uniqueConstraints = {
 //        @UniqueConstraint(columnNames = "ID")})
-@ToString
+//@ToString
+@Data
 @RequiredArgsConstructor
 public class Printer implements HibernateEntity {
 
@@ -48,25 +50,25 @@ public class Printer implements HibernateEntity {
 //    @NonNull
 //    public Employees employees;
 
-    @ManyToMany(mappedBy="printers")
-    @Getter @Setter
-    @NonNull
-    @LazyCollection(LazyCollectionOption.TRUE)
-    private Set<Employees> employees;
+//    @ManyToMany(mappedBy="printers")
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+//    @Getter @Setter
+//    @LazyCollection(LazyCollectionOption.TRUE)
+    @JoinTable(name="Printer_Employees", joinColumns= @JoinColumn(name="printer_id")
+            , inverseJoinColumns=@JoinColumn(name="employee_id"))
+    private List<Employees> employeeses;
 
 
-    public Set<Employees> getEmployees(){
-        if (employees == null){
-            employees=  new HashSet<>();      }
-        return employees;
+    public List<Employees> getEmployees(){
+        if (employeeses == null){
+            employeeses=  new ArrayList<>();      }
+        return employeeses;
     }
 
-    public void setEmployees(Set<Employees> employees)
+    public void setEmployees(List<Employees> employees)
     {
-        this.employees= employees;
+        this.employeeses= employeeses;
     }
-
-
 
 
     public Printer(){}

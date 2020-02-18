@@ -6,17 +6,14 @@ import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
-@Entity
-@Table(name = "Employees", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "ID")})
+@Entity(name="Employees")
+@Table(name = "employees")
 @Data
 @RequiredArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 public class Employees implements HibernateEntity {
 
     @Id
@@ -89,25 +86,24 @@ public class Employees implements HibernateEntity {
 //    @EqualsAndHashCode.Exclude
 //    private Set<Printer> printers;
 
-    @ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(name="Employees_Printer", joinColumns={@JoinColumn(referencedColumnName="ID")}
-            , inverseJoinColumns={@JoinColumn(referencedColumnName="ID")})
-    @ToString.Exclude
-    @LazyCollection(LazyCollectionOption.TRUE)
-    @Getter@Setter
-    @EqualsAndHashCode.Exclude
-    private Set<Printer> printers;
+    @ManyToMany(mappedBy="employeeses")
+//    @JoinTable(name="Employees_Printer", joinColumns={@JoinColumn(referencedColumnName="ID")}
+//            , inverseJoinColumns={@JoinColumn(referencedColumnName="ID")})
+//    @ToString.Exclude
+//    @LazyCollection(LazyCollectionOption.TRUE)
+//    @Getter@Setter
+//    @EqualsAndHashCode.Exclude
+    private List<Printer> printers;
 
 
-
-    public Set<Printer> getPrinters(){
+    public List<Printer> getPrinters(){
         if (printers == null){
-            printers = new HashSet<>();
+            printers = new ArrayList<>();
         }
         return printers;
     }
 
-    public void setPrinters(Set<Printer> printers){
+    public void setPrinters(List<Printer> printers){
         this.printers = printers;
     }
 

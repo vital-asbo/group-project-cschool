@@ -80,7 +80,11 @@ public class EmployeesController {
     @RequestMapping("/employees_list")
     public ModelAndView showEmployeesList(Model model) {
         System.out.println(list.toString());
-        return new ModelAndView("employees/employees_list", "list", list);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("list", list);
+        modelAndView.addObject("printersList", printersList);
+        modelAndView.setViewName("employees/employees_list");
+        return modelAndView;
     }
 
     @RequestMapping("/printers_list")

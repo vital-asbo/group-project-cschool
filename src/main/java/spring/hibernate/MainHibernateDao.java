@@ -54,6 +54,6 @@ public class MainHibernateDao {
         Printer printer = new Printer();
         printer.setModel("Lexmark");
         printer.setProducer("XP500");
-        printer.setEmployees(employeesSet);
+        printer.setEmployees(employeesList);
     }
 }
