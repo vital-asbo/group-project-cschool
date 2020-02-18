@@ -53,8 +53,9 @@ public class Printer implements HibernateEntity {
 //    @ManyToMany(mappedBy="printers")
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @Getter @Setter
+
     @EqualsAndHashCode.Exclude
-    @LazyCollection(LazyCollectionOption.TRUE)
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(name="Printer_Employees", joinColumns= @JoinColumn(name="printer_id")
             , inverseJoinColumns=@JoinColumn(name="employee_id"))
     private List<Employees> employeeses;

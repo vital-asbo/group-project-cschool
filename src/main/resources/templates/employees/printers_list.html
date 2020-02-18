@@ -31,6 +31,13 @@
                 <td th:text="${printer.id}"></td>
                 <td th:text="${printer.model}"></td>
                 <td th:text="${printer.producer}"></td>
+                <td>
+                    <table class="table table-sm">
+                        <tr class="result" data-th-each="item : ${printer.getEmployees()}">
+                            <td th:text="${item.getFirstName() + ' ' + item.getLastName()}"></td>
+                        </tr>
+                    </table>
+                </td>
 
                 <td class="action-td">
                     <form class="padding5px" th:action="#" th:action="@{/delete_printer}">
@@ -42,6 +49,7 @@
                         <input type="submit" class="btn btn-warning"  value="Edit">
                     </form>
                 </td>
+
 
             </tr>
             </tbody>

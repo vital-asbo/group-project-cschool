@@ -12,6 +12,7 @@ import java.util.*;
 @Entity(name="Employees")
 @Table(name = "Employees")
 @Data
+@ToString
 @RequiredArgsConstructor
 //@AllArgsConstructor
 public class Employees implements HibernateEntity {
