@@ -11,26 +11,13 @@
 <div class="container">
     <h2>Employee Form</h2>
     <div class="form-group">
-        <form action="#" class="form-group" th:action="@{/save}" th:object="${employees}" method="post">
+        <form action="#" class="form-group" th:action="@{/savePrinter}" th:object="${printer}" method="post">
             <input type="hidden" th:field="*{id}">
-            <h4>First Name</h4>
-            <input type="text" class="form-control" th:field="*{firstName}" placeholder="First Name"><br>
-            <h4>Last Name</h4>
-            <input type="text" class="form-control" th:field="*{lastName}" placeholder="Last Name"><br>
-            <h4>Address</h4>
-            <input type="text" class="form-control" th:field="*{address}" placeholder="Address"><br>
-            <h4>City</h4>
-            <input type="text" class="form-control" th:field="*{city}" placeholder="City"><br>
-            <h4>Salary</h4>
-            <input type="text" class="form-control" th:field="*{salary}" placeholder="Salary"><br>
-            <h4>Age</h4>
-            <input type="text" class="form-control" th:field="*{age}" placeholder="Age"><br>
-            <h4>Start job date - format: DD-MM-YYYY</h4>
-            <input type="text" class="form-control" th:field="*{startJobDate}" placeholder="StartJobDate"><br>
-            <h4>Benefit</h4>
-            <input type="text" class="form-control" th:field="*{benefit}" placeholder="Benefit"><br>
-            <h4>Email</h4>
-            <input type="text" class="form-control" th:field="*{email}" placeholder="Email"><br>
+            <h4>Model</h4>
+            <input type="text" class="form-control" th:field="*{model}" placeholder="Model"><br>
+            <h4>Producer</h4>
+            <input type="text" class="form-control" th:field="*{producer}" placeholder="Producer"><br>
+
             <!--            <td><select class="form-control" th:field="*{printersList}" >-->
             <!--                <option value="default">Printers</option>-->
             <!--            <option th:each="printer : ${printersList}"-->

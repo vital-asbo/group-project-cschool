@@ -87,6 +87,46 @@ public class EmployeesController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/delete_printer", method = RequestMethod.POST)
+    public ModelAndView deletePrinter(@RequestParam(value = "printer_id") String printer_id) {
+        Printer printerTemp = getPrinterById(Integer.parseInt(printer_id));
+        printersList.remove(printerTemp);
+        deletePrinterInDB(printerTemp);
+        return new ModelAndView("redirect:/printers_list");
+    }
+
+    @RequestMapping(value = "/edit_printer", method = RequestMethod.POST)
+    public ModelAndView editPrinter(@RequestParam(value = "printer_id") String printer_id) {
+        Printer printerTemp = getPrinterById(Integer.parseInt(printer_id));
+        updatePrinterInDB(printerTemp);
+        return new ModelAndView("employees/printer_form", "printer", printerTemp);
+    }
+
+    @RequestMapping(value = "/printer_form", method = RequestMethod.GET)
+    public String showFormPrinter(Model model) {
+        Printer printer = new Printer();
+//        Printer printer = new Printer();
+
+        model.addAttribute("printer", printer);
+        return "employees/printer_form";
+    }
+
+    @RequestMapping(value = "/savePrinter")
+    public ModelAndView savePrinter(@ModelAttribute(value = "printer") Printer printer) {
+        if (printer.getId() == 0) {
+            System.out.println("Adding a new printer");
+            printer.setId(list.size() + 1);
+            printer.setEmployeeses(list);// dodaję wszystkich empów
+            printersList.add(printer);
+            addPrinterInDB(printer);
+        } else {
+            updatePrinterInList(printer);
+            updatePrinterInDB(printer);
+        }
+
+        return new ModelAndView("redirect:/printers_list");
+    }
+
     @RequestMapping("/printers_list")
     public ModelAndView showPrintersList(Model model) {
         System.out.println(list.toString());
@@ -96,6 +136,10 @@ public class EmployeesController {
     private Employees getEmployeesById(@RequestParam int id) {
         System.out.println(id);
         return list.stream().filter(f -> f.getId() == id).findFirst().get();
+    }
+    private Printer getPrinterById(@RequestParam int id) {
+        System.out.println(id);
+        return printersList.stream().filter(f -> f.getId() == id).findFirst().get();
     }
 
     private void updateEmployeeInList(Employees employees) {
@@ -112,9 +156,22 @@ public class EmployeesController {
         employeesTemp.setPhones(employees.getPhones());
     }
 
+    private void updatePrinterInList(Printer printer) {
+       Printer printerTemp = getPrinterById(printer.getId());
+        printerTemp.setModel(printer.getModel());
+        printerTemp.setProducer(printer.getProducer());
+        printerTemp.setEmployeeses(printer.getEmployeeses());
+
+    }
+
     private void updateEmployeeInDB(Employees employees) {
         if (DataSource.isDataBaseConnection) {
             hibernateDao.update(employees);
+        }
+    }
+    private void updatePrinterInDB(Printer printer) {
+        if (DataSource.isDataBaseConnection) {
+            hibernateDao.update(printer);
         }
     }
 
@@ -123,10 +180,21 @@ public class EmployeesController {
             hibernateDao.save(employees);
         }
     }
+    private void addPrinterInDB(Printer printer) {
+        if (DataSource.isDataBaseConnection) {
+            hibernateDao.save(printer);
+        }
+    }
 
     private void deleteEmployeeInDB(Employees employees) {
         if (DataSource.isDataBaseConnection) {
             hibernateDao.delete(employees);
+        }
+    }
+
+    private void deletePrinterInDB(Printer printer) {
+        if (DataSource.isDataBaseConnection) {
+            hibernateDao.delete(printer);
         }
     }
 }

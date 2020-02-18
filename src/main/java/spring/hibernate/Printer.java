@@ -22,6 +22,7 @@ public class Printer implements HibernateEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
+    @Getter @Setter
     private int id;
 
     @Column(name = "model")
