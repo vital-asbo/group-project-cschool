@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Set;
 
 @Entity(name="Printer")
-@Table(name = "printer")
+@Table(name = "Printer")
 //@Table(name = "Printer",uniqueConstraints = {
 //        @UniqueConstraint(columnNames = "ID")})
-//@ToString
+@ToString
 @Data
 @RequiredArgsConstructor
 public class Printer implements HibernateEntity {
@@ -52,8 +52,9 @@ public class Printer implements HibernateEntity {
 
 //    @ManyToMany(mappedBy="printers")
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-//    @Getter @Setter
-//    @LazyCollection(LazyCollectionOption.TRUE)
+    @Getter @Setter
+    @EqualsAndHashCode.Exclude
+    @LazyCollection(LazyCollectionOption.TRUE)
     @JoinTable(name="Printer_Employees", joinColumns= @JoinColumn(name="printer_id")
             , inverseJoinColumns=@JoinColumn(name="employee_id"))
     private List<Employees> employeeses;

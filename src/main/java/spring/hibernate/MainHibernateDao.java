@@ -1,9 +1,6 @@
 package spring.hibernate;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class MainHibernateDao {
 
@@ -48,12 +45,13 @@ public class MainHibernateDao {
 
 
         hibernateDao.save(phones);
-        Set<Employees> employeesSet = new HashSet<>();
+        List<Employees> employeesSet = new ArrayList<>();
         employeesSet.add(employee);
 
         Printer printer = new Printer();
         printer.setModel("Lexmark");
         printer.setProducer("XP500");
         printer.setEmployees(employeesList);
+        hibernateDao.save(printer);
     }
 }

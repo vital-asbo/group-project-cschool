@@ -21,7 +21,7 @@ public class EmployeesController {
     public EmployeesController() {
         try {
               hibernateDao = new HibernateDao();
-//            DataSource.supplyDatabase();
+            DataSource.supplyDatabase();
             list = hibernateDao.get(Employees.class);
             printersList = hibernateDao.get(Printer.class);
         } catch (NullPointerException ex) {
@@ -90,7 +90,7 @@ public class EmployeesController {
     @RequestMapping("/printers_list")
     public ModelAndView showPrintersList(Model model) {
         System.out.println(list.toString());
-        return new ModelAndView("employees/printers_list", "list", printersList);
+        return new ModelAndView("employees/printers_list", "printersList", printersList);
     }
 
     private Employees getEmployeesById(@RequestParam int id) {

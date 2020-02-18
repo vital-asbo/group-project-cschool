@@ -53,6 +53,8 @@ public class DataSource {
         printer.setEmployees(employeesList);
         printer.setProducer("HP");
         printer.setModel("100");
+        printer.setEmployeeses(employeesList);
+        hibernateDao.save(printer);
 
 
         List<Printer> printerList = new ArrayList<>();

@@ -10,7 +10,7 @@ import java.util.*;
 
 
 @Entity(name="Employees")
-@Table(name = "employees")
+@Table(name = "Employees")
 @Data
 @RequiredArgsConstructor
 //@AllArgsConstructor
@@ -89,8 +89,8 @@ public class Employees implements HibernateEntity {
     @ManyToMany(mappedBy="employeeses")
 //    @JoinTable(name="Employees_Printer", joinColumns={@JoinColumn(referencedColumnName="ID")}
 //            , inverseJoinColumns={@JoinColumn(referencedColumnName="ID")})
-//    @ToString.Exclude
-//    @LazyCollection(LazyCollectionOption.TRUE)
+    @ToString.Exclude
+    @LazyCollection(LazyCollectionOption.TRUE)
 //    @Getter@Setter
 //    @EqualsAndHashCode.Exclude
     private List<Printer> printers;
